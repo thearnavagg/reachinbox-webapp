@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import MailPage from "./pages/MailPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import GoogleOAuthButton from "./components/GoogleOAuthButton";
+import Auth from "./pages/Auth";
 
 const Routers = () => {
   const navigate = useNavigate();
@@ -20,13 +20,10 @@ const Routers = () => {
     const token = queryParams.get("token");
 
     if (token) {
-      // Store the token in localStorage
       localStorage.setItem("token", token);
 
-      // Clear the token from the URL
       window.history.replaceState({}, document.title, "/");
 
-      // Navigate to the /mail page
       navigate("/mail");
     }
   }, [navigate, location]);
@@ -38,7 +35,7 @@ const Routers = () => {
       <Route
         path="/"
         element={
-          isAuthenticated() ? <Navigate to="/mail" /> : <GoogleOAuthButton />
+          isAuthenticated() ? <Navigate to="/mail" /> : <Auth />
         }
       />
       <Route
@@ -50,7 +47,6 @@ const Routers = () => {
   );
 };
 
-// Wrap App with Router
 const App = () => (
   <Router>
     <Routers />
