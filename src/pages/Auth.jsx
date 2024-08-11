@@ -14,7 +14,7 @@ const handleGoogleLogin = () => {
 const Auth = () => {
   return (
     <div className="h-screen flex flex-col">
-      <header className="bg-background top-0 left-0 w-full border-b">
+      <header className="bg-black top-0 left-0 w-full border-b">
         <div className="container flex h-16 items-center justify-center px-4 md:px-6">
           <img src={logo} height={150} width={150} />
         </div>
