@@ -4,7 +4,8 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
-const googleLoginUrl = "https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=https://reachinbox-arnav-webapp.vercel.app";
+const googleLoginUrl =
+  "https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=https://reachinbox-arnav-webapp.vercel.app";
 // "https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=http://localhost:5173";
 
 const handleGoogleLogin = () => {
@@ -19,25 +20,25 @@ const Auth = () => {
           <img src={logo} height={150} width={150} />
         </div>
       </header>
-      <div className="flex-grow flex justify-center items-center">
-        <div className="w-full flex flex-col items-center max-w-md p-8 space-y-6 bg-gradient-to-r from-[#111214] to-[#121212] rounded-md shadow-md">
-          <h2 className="text-2xl font-bold text-center text-white">
+      <div className="flex-grow flex justify-center items-center px-4">
+        <div className="w-full flex flex-col items-center max-w-md p-4 md:p-8 space-y-4 md:space-y-6 bg-gradient-to-r from-[#111214] to-[#121212] rounded-md shadow-md">
+          <h2 className="text-xl md:text-2xl font-bold text-center text-white">
             Create a new account
           </h2>
           <button
             onClick={handleGoogleLogin}
-            className="flex items-center justify-center w-full px-4 py-2 space-x-2 text-sm font-medium text-white from-[#111214] to-[#121212] border border-gray-600 rounded-md"
+            className="flex items-center justify-center w-full px-4 py-2 space-x-2 text-sm md:text-base font-medium text-white from-[#111214] to-[#121212] border border-gray-600 rounded-md"
           >
-            <FcGoogle alignmentBaseline="center" scale={50} />
+            <FcGoogle className="text-lg md:text-xl" />
             <span>Sign Up with Google</span>
           </button>
           <button
             onClick={handleGoogleLogin}
-            className="w-15 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-[#4B63DD] to-[#0524BF] rounded-md"
+            className="w-full px-4 py-2 text-sm md:text-base font-medium text-white bg-gradient-to-r from-[#4B63DD] to-[#0524BF] rounded-md"
           >
             Create an Account
           </button>
-          <p className="text-sm text-center text-gray-400">
+          <p className="text-xs md:text-sm text-center text-gray-400">
             Already have an account?{" "}
             <Link onClick={handleGoogleLogin} className="text-blue-500">
               Sign In
@@ -45,6 +46,7 @@ const Auth = () => {
           </p>
         </div>
       </div>
+
       <Footer />
     </div>
   );
