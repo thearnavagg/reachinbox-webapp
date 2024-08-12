@@ -138,7 +138,7 @@ const MailPage = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full flex dark:bg-[#000000] dark:text-gray-100">
+    <div className="max-h-screen w-full flex dark:bg-[#000000] dark:text-gray-100">
       <div
         name="navbar"
         className="fixed top-0 left-0 flex h-screen w-20 flex-col items-center border-r bg-muted/40 dark:bg-[#101113] py-4"
