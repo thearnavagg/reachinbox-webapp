@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
 const googleLoginUrl =
-// "https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=https://reachinbox-arnav-webapp.vercel.app";
-"https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=http://localhost:5173";
+"https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=https://reachinbox-arnav-webapp.vercel.app";
+// "https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=http://localhost:5173";
 
 const handleGoogleLogin = () => {
   window.location.href = googleLoginUrl;
