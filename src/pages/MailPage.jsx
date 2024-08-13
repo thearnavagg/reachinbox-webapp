@@ -17,6 +17,8 @@ import EmailComponent from "../components/EmailCard";
 import Mail from "../components/Mail";
 import { FaReply } from "react-icons/fa";
 import DeletePopUp from "../components/DeletePopUp";
+import DarkModeToggle from "../components/toggle";
+import { resetData } from "../api/reachinboxApi";
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -51,8 +53,17 @@ const MailPage = () => {
   const [selectedThread, setSelectedThread] = useState(null);
 
   useEffect(() => {
-    const loadMails = async () => {
+    const resetAndLoadMails = async () => {
       setLoading(true);
+      try {
+        const resetResponse = await resetData();
+        if (!resetResponse) {
+          console.error("Reset failed, continuing to load mails...");
+        }
+      } catch (err) {
+        console.error("Failed to reset data:", err);
+      }
+
       try {
         const mailData = await fetchMails();
         if (Array.isArray(mailData)) {
@@ -71,9 +82,10 @@ const MailPage = () => {
         setLoading(false);
       }
     };
-
-    loadMails();
+    resetAndLoadMails();
   }, []);
+
+
 
   const loadThreadMessages = async (threadId) => {
     try {
@@ -172,7 +184,11 @@ const MailPage = () => {
           <div className="flex items-center gap-4">
             <div className="font-medium">Onebox</div>
           </div>
-          <div className="ml-auto flex items-center gap-4"></div>
+
+          <div className="ml-auto flex items-center gap-4">
+            <DarkModeToggle />
+            <div className="font-medium">Tim workspace</div>
+          </div>
         </header>
 
         <main className="mt-14 p-4 md:p-6">
@@ -247,7 +263,7 @@ const MailPage = () => {
               </Box>
 
               <div
-                className="cursor-pointer flex items-center fixed bottom-0 ml-10 mb-10 bg-gradient-to-r from-[#4B63DD] to-[#0524BFFC] rounded-md px-10 py-2"
+                className="cursor-pointer flex items-center fixed bottom-0 ml-10 mb-10 bg-gradient-to-r from-[#4B63DD] to-[#0524BFFC] rounded-md px-10 py-2 text-white"
                 onClick={togglePopUp}
               >
                 <FaReply className="mr-2 text-xl" /> Reply

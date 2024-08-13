@@ -31,19 +31,17 @@ const Routers = () => {
   const isAuthenticated = () => !!localStorage.getItem("token");
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          isAuthenticated() ? <Navigate to="/mail" /> : <Auth />
-        }
-      />
-      <Route
-        path="/mail"
-        element={isAuthenticated() ? <MailPage /> : <Navigate to="/" />}
-      />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+      <Routes>
+        <Route
+          path="/"
+          element={isAuthenticated() ? <Navigate to="/mail" /> : <Auth />}
+        />
+        <Route
+          path="/mail"
+          element={isAuthenticated() ? <MailPage /> : <Navigate to="/" />}
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
   );
 };
 
