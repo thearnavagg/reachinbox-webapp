@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,6 +14,9 @@ import Auth from "./pages/Auth";
 const Routers = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token")
+  );
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -21,27 +24,23 @@ const Routers = () => {
 
     if (token) {
       localStorage.setItem("token", token);
-
-      window.history.replaceState({}, document.title, "/");
-
-      navigate("/mail");
+      setIsAuthenticated(true);
+      navigate("/mail", { replace: true });
     }
-  }, [navigate, location]);
-
-  const isAuthenticated = () => !!localStorage.getItem("token");
+  }, [location, navigate]);
 
   return (
-      <Routes>
-        <Route
-          path="/"
-          element={isAuthenticated() ? <Navigate to="/mail" /> : <Auth />}
-        />
-        <Route
-          path="/mail"
-          element={isAuthenticated() ? <MailPage /> : <Navigate to="/" />}
-        />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+    <Routes>
+      <Route
+        path="/"
+        element={isAuthenticated ? <Navigate to="/mail" /> : <Auth />}
+      />
+      <Route
+        path="/mail"
+        element={isAuthenticated ? <MailPage /> : <Auth/>}
+      />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 };
 
